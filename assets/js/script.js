@@ -12,27 +12,60 @@
 	
 	//Update Header Style and Scroll to Top
 	function headerStyle() {
-		if($('.main-header').length){
-			var windowpos = $(window).scrollTop();
-			var headerUpper = $('.header-upper');
-			var headerTop = $('.header-top');
-			var scrollLink = $('.scroll-to-top');
+		// if($('.main-header').length){
+		// 	var windowpos = $(window).scrollTop();
+		// 	var headerUpper = $('.header-upper');
+		// 	var headerTop = $('.header-top');
+		// 	var scrollLink = $('.scroll-to-top');
 			
-			// Cek jika scroll lebih dari 100px
-			if (windowpos > 136) {
-				// Menambahkan kelas sticky pada header-upper
-				headerUpper.addClass('sticky');
-				// Menyembunyikan header-top
-				headerTop.fadeOut(300);
-				// Menampilkan scroll-to-top
-				scrollLink.fadeIn(1000);
+		// 	// Cek jika scroll lebih dari 100px
+		// 	if (windowpos > 136) {
+		// 		// Menambahkan kelas sticky pada header-upper
+		// 		headerUpper.addClass('sticky');
+		// 		// Menyembunyikan header-top
+		// 		headerTop.fadeOut(300);
+		// 		// Menampilkan scroll-to-top
+		// 		scrollLink.fadeIn(1000);
+		// 	} else {
+		// 		// Menghapus kelas sticky pada header-upper
+		// 		headerUpper.removeClass('sticky');
+		// 		// Menampilkan kembali header-top
+		// 		headerTop.fadeIn(300);
+		// 		// Menyembunyikan scroll-to-top
+		// 		scrollLink.fadeOut(300);
+		// 	}
+		// }
+		if($('.main-header').length){
+			var scrollY = $(window).scrollTop();
+			var header = $('.main-header');
+			var headerTop = $('.header-top'); // Marquee lo
+
+			if (scrollY <= 200) {
+				// STATE: ATAS (Sticky/Absolute)
+				header.removeClass('header-fixed').addClass('header-absolute');
+				header.css({
+					"transform": "translateY(0)",
+					"opacity": "1"
+				});
+				// Marquee tetap tampil di atas
+				// headerTop.show(); 
+				
+			} else if (scrollY > 200 && scrollY <= 350) {
+				// STATE: SEMBUNYI (Transisi kabur ke atas)
+				header.css({
+					"transform": "translateY(-100px)",
+					"opacity": "0"
+				});
+				
 			} else {
-				// Menghapus kelas sticky pada header-upper
-				headerUpper.removeClass('sticky');
-				// Menampilkan kembali header-top
-				headerTop.fadeIn(300);
-				// Menyembunyikan scroll-to-top
-				scrollLink.fadeOut(300);
+				// STATE: BAWAH (Fixed Glassy)
+				header.addClass('header-fixed').removeClass('header-absolute');
+				header.css({
+					"transform": "translateY(0)",
+					"opacity": "1"
+				});
+				// Marquee diumpetin pas lagi melayang biar ringkas
+				// headerTop.hide();
 			}
 		}
 	}
@@ -90,6 +123,7 @@
 	
 		});
 	}
+	
 	// Loading masuk page akan di gantikan dengan fungsi berikut
 	
 	$(window).on('load', function() {
@@ -127,17 +161,113 @@
   document.querySelectorAll("img").forEach((img) => {
 	img.addEventListener("contextmenu", (event) => event.preventDefault());
   });
- 
-/* ================= Section FAQ ================= */
+
+
+// NUMBER COUNTING ANIMATION
+const semuaAngka = document.querySelectorAll("#card-statistik span");
+const container = document.getElementById("counters");
+
+let activated = false;
+
+window.addEventListener("scroll", () => {
+    // tambahan
+    const containerTop = container.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    // if (pageYOffset > container.offsetTop - container.offsetHeight - 200
+    if (containerTop < windowHeight - 50 && !activated) {
+        semuaAngka.forEach(angka => {
+            angka.innerText = 0;
+            let count = 0;
+            function updateCount(){
+                const target = parseInt(angka.dataset.count);
+                if (count < target){
+                    count++;
+                    angka.innerText = count;
+                    setTimeout(updateCount, 40);
+                } else {
+                    angka.innerText = target;
+                }
+            }
+            updateCount();
+            activated = true;
+        });
+    }
+    // } else if (pageYOffset < container.offsetTop - container.offsetHeight - 500
+    //     || pageYOffset === 0 && activated === true
+    // ) {
+    //     semuaAngka.forEach(angka => {
+    //         angka.innerText = 0;
+    //     });
+    //     activated = false;
+    // }
+    if (containerTop > windowHeight) {
+        semuaAngka.forEach((angka) => {
+        angka.innerText = 0;
+        });
+        activated = false;
+    }
+})
+// NUMBER COUNTING ANIMATION
+
+
+//  FAQ SECTION - ACCORDION
 document.addEventListener("DOMContentLoaded", () => {
-	const accordions = document.querySelectorAll(".accordion-toggle");
-  
-	accordions.forEach((accordion) => {
-	  accordion.addEventListener("change", function () {
-		// Menutup accordion lainnya saat yang ini dibuka
-		accordions.forEach((item) => {
-		  if (item !== this) item.checked = false;
-		});
-	  });
+    const accordions = document.querySelectorAll(".accordion-toggle");
+    accordions.forEach((accordion) => {
+        accordion.addEventListener("change", function () {
+        // Menutup accordion lainnya saat yang ini dibuka
+        accordions.forEach((item) => {
+            if (item !== this) item.checked = false;
+        });
+        });
+    });
+});
+
+const swiper = new Swiper('.card-wrapper', {
+	loop: true,
+	spaceBetween: 40,
+
+	// Pagination bullets
+	pagination: {
+		el: '.swiper-pagination',
+		clickable: true,
+		dynamicBullets: true,
+	},
+
+	// Navigation arrows
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+	},
+
+	// Responsive breakpoints
+	breakpoints: {
+		0: {
+			slidesPerView: 1
+		},
+		768: {
+			slidesPerView: 2
+		},
+		1280: {
+			slidesPerView: 3
+		},
+	}
+});
+
+document.querySelectorAll('.btn-seemore').forEach((btn) => {
+	btn.addEventListener('click', (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		const text = btn.previousElementSibling;
+
+		text.classList.toggle('line-clamp-1');
+
+		if (text.classList.contains('line-clamp-1')) {
+			btn.textContent = 'Lihat selengkapnya...';
+		} else {
+			btn.textContent = 'Lihat lebih sedikit...';
+		}
 	});
-  });
+});
