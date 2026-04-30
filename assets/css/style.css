@@ -49,6 +49,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: inherit;
     font-weight: inherit;
 }
+p {
+    margin: 0; 
+    line-height: 1.5; 
+}
 img, svg {
     display: block;
     vertical-align: middle;
@@ -371,6 +375,7 @@ img, svg {
 	float: right;
 	width:100%;
 	z-index:1;
+	padding-left: 10px;
 }
 /* 
 .main-header .nav-outer .logo-header{
@@ -988,7 +993,7 @@ img, svg {
 	width: 1px;
 	height: 1px;
 	border-radius: 9999px;
-	box-shadow: 0 0 200px 100px rgba(31, 127, 120, 0.8);
+	box-shadow: 0 0 200px 100px rgba(31, 127, 120, 0.3);
 	z-index: 1;
 }
 .hero-section .hero-content {
@@ -2656,6 +2661,7 @@ button {
 .faq-right-column .container-accordion li .faq-content {
     text-align: left;
     font-size: 0.75rem;
+	color: var(--color-notWhite);
 }
 
 .container-accordion li label i {
