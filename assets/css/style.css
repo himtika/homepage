@@ -363,7 +363,7 @@ img, svg {
 	left: 50%;
 	z-index:2;
 	transform: translateX(-50%);
-	margin-top: 10px;
+	margin-top: 5px;
 }
 
 .main-header .nav-outer{
@@ -976,6 +976,7 @@ img, svg {
     text-align: center;
     /* pt-35 (35 * 4px = 140px) */
     padding-top: 140px;
+	overflow: hidden;
 }
 .hero-section .hero-glow {
 	position: absolute;
@@ -1345,6 +1346,7 @@ img, svg {
 	position: relative;
 	padding-top: 80px;
 	padding-bottom: 100px;
+	overflow: hidden;
 }
 .about-section .about-glow {
 	position: absolute;
@@ -1647,6 +1649,7 @@ img, svg {
 /* ================= Section Kenali ================= */
 .kenali-section {
 	position: relative;
+	overflow: hidden;
 }
 .kenali-section .kenali-glow {
 	position: absolute;
@@ -1968,6 +1971,7 @@ img, svg {
 	position: relative;
 	padding-top: 120px;
 	padding-bottom: 80px;
+	overflow: hidden;
 }
 .event-section .event-glow {
 	position: absolute;
@@ -2209,6 +2213,7 @@ button {
 .himfo-section {
 	padding-top: 40px;
 	padding-bottom: 80px;
+	overflow: hidden;
 }
 .himfo-section .himfo-card {
     background-size: cover;
@@ -2391,6 +2396,7 @@ button {
 /* ================= Section Fitur Himfo ================= */
 .fitur-himfo-section {
 	position: relative;
+	overflow: hidden;
 }
 .fitur-himfo-section .fitur-himfo-glow {
 	position: absolute;
@@ -2514,6 +2520,7 @@ button {
 	align-items: center;
 	padding-top: 150px;
 	padding-bottom: 120px;
+	overflow: hidden;
 }
 .faq-section .faq-glow {
 	position: absolute;
