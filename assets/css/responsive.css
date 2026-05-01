@@ -57,7 +57,7 @@
     }
 
     .live-news .auto-container {
-        padding: 0 10px !important;
+        padding: 0 0 !important;
     }
 
     /* Rectangle Nama Kabinet di HP */
@@ -305,7 +305,7 @@
     }
 
     .live-news .auto-container {
-        padding: 0 10px !important;
+        padding: 0 0 !important;
     }
 
     /* Rectangle Nama Kabinet di HP */
@@ -395,6 +395,26 @@
 	.live-news .rectangle .rectangle-shadow{
 		display: none;
 	} */
+
+    .back-to-top {
+        bottom: 40px;
+        right: 30px;
+    }
+
+    .button-back-to-top {
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+    }
+
+    .button-back-to-top .svg-back-to-top {
+        width: 18px;
+        height: 18px;
+    }
+
+    .button-back-to-top::after {
+        display: none !important;
+    }
 }
 
 @media only screen and (min-width: 768px){
@@ -422,6 +442,13 @@
 		width:100%;
 		text-align:center	
 	}
+}
+
+@media only screen and (max-width: 480px) {
+    .back-to-top {
+        bottom: 30px; 
+        right: 20px;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px)  {
@@ -894,6 +921,9 @@
         padding-right: 44px;
         padding-left: 44px;
     }
+    .mobile-menu .menu-backdrop{
+        display: none;
+    }
 
     /* ================= Section Hero ================= */
     .hero-section {
@@ -1230,6 +1260,11 @@
     .card-event-itbootcamp .card-event-footer p,
     .card-event-diesnatalis .card-event-footer p {
         font-size: 14px;
+    }
+    .card-wrapper .card-slide .card-event-1:hover,
+    .card-wrapper .card-slide .card-event-itbootcamp:hover,
+    .card-wrapper .card-slide .card-event-diesnatalis:hover {
+        transform: translateY(-8px);
     }
     /* ================= Section Event ================= */
 
